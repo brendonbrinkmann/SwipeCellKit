@@ -7,16 +7,6 @@
 
 import UIKit
 
-extension UITableView {
-    var swipeCells: [SwipeTableViewCell] {
-        return visibleCells.compactMap({ $0 as? SwipeTableViewCell })
-    }
-    
-    func hideSwipeCell() {
-        swipeCells.forEach { $0.hideSwipe(animated: true) }
-    }
-}
-
 extension UICollectionView {
     var swipeCells: [SwipeCollectionViewCell] {
         return visibleCells.compactMap({ $0 as? SwipeCollectionViewCell })
@@ -38,8 +28,8 @@ extension UICollectionView {
 extension UIScrollView {
     var swipeables: [Swipeable] {
         switch self {
-        case let tableView as UITableView:
-            return tableView.swipeCells
+//        case let tableView as UITableView:
+//            return tableView.swipeCells
         case let collectionView as UICollectionView:
             return collectionView.swipeCells
         default:
@@ -49,8 +39,8 @@ extension UIScrollView {
     
     func hideSwipeables() {
         switch self {
-        case let tableView as UITableView:
-            tableView.hideSwipeCell()
+//        case let tableView as UITableView:
+//            tableView.hideSwipeCell()
         case let collectionView as UICollectionView:
             collectionView.hideSwipeCell()
         default:

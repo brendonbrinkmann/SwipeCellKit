@@ -16,7 +16,7 @@ import UIKit
  */
 open class SwipeCollectionViewCell: UICollectionViewCell {
     /// The object that acts as the delegate of the `SwipeCollectionViewCell`.
-    public weak var delegate: SwipeCollectionViewCellDelegate?
+//    public weak var delegate: SwipeCollectionViewCellDelegate?
     
     var state = SwipeState.center
     var actionsView: SwipeActionsView?
@@ -94,7 +94,7 @@ open class SwipeCollectionViewCell: UICollectionViewCell {
         }
         
         swipeController = SwipeController(swipeable: self, actionsContainerView: contentView)
-        swipeController.delegate = self
+//        swipeController.delegate = self
     }
     
     /// :nodoc:
@@ -207,50 +207,50 @@ open class SwipeCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension SwipeCollectionViewCell: SwipeControllerDelegate {
-    func swipeController(_ controller: SwipeController, canBeginEditingSwipeableFor orientation: SwipeActionsOrientation) -> Bool {
-        return true
-    }
-    
-    func swipeController(_ controller: SwipeController, editActionsForSwipeableFor orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: self) else { return nil }
-        
-        return delegate?.collectionView(collectionView, editActionsForItemAt: indexPath, for: orientation)
-    }
-    
-    func swipeController(_ controller: SwipeController, editActionsOptionsForSwipeableFor orientation: SwipeActionsOrientation) -> SwipeOptions {
-        guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: self) else { return SwipeOptions() }
-        
-        return delegate?.collectionView(collectionView, editActionsOptionsForItemAt: indexPath, for: orientation) ?? SwipeOptions()
-    }
-    
-    func swipeController(_ controller: SwipeController, visibleRectFor scrollView: UIScrollView) -> CGRect? {
-        guard let collectionView = collectionView else { return nil }
-        
-        return delegate?.visibleRect(for: collectionView)
-    }
-    
-    func swipeController(_ controller: SwipeController, willBeginEditingSwipeableFor orientation: SwipeActionsOrientation) {
-        guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: self) else { return }
-        
-        // Remove highlight and deselect any selected cells
-        super.isHighlighted = false
-        isPreviouslySelected = isSelected
-        collectionView.deselectItem(at: indexPath, animated: false)
-        
-        delegate?.collectionView(collectionView, willBeginEditingItemAt: indexPath, for: orientation)
-    }
-    
-    func swipeController(_ controller: SwipeController, didEndEditingSwipeableFor orientation: SwipeActionsOrientation) {
-        guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: self), let actionsView = self.actionsView else { return }
-        
-        resetSelectedState()
-        
-        delegate?.collectionView(collectionView, didEndEditingItemAt: indexPath, for: actionsView.orientation)
-    }
-    
-    func swipeController(_ controller: SwipeController, didDeleteSwipeableAt indexPath: IndexPath) {
-        collectionView?.deleteItems(at: [indexPath])
-    }
-}
+//extension SwipeCollectionViewCell: SwipeControllerDelegate {
+//    func swipeController(_ controller: SwipeController, canBeginEditingSwipeableFor orientation: SwipeActionsOrientation) -> Bool {
+//        return true
+//    }
+//
+//    func swipeController(_ controller: SwipeController, editActionsForSwipeableFor orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+//        guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: self) else { return nil }
+//
+//        return delegate?.collectionView(collectionView, editActionsForItemAt: indexPath, for: orientation)
+//    }
+//
+//    func swipeController(_ controller: SwipeController, editActionsOptionsForSwipeableFor orientation: SwipeActionsOrientation) -> SwipeOptions {
+//        guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: self) else { return SwipeOptions() }
+//
+//        return delegate?.collectionView(collectionView, editActionsOptionsForItemAt: indexPath, for: orientation) ?? SwipeOptions()
+//    }
+//
+//    func swipeController(_ controller: SwipeController, visibleRectFor scrollView: UIScrollView) -> CGRect? {
+//        guard let collectionView = collectionView else { return nil }
+//
+//        return delegate?.visibleRect(for: collectionView)
+//    }
+//
+//    func swipeController(_ controller: SwipeController, willBeginEditingSwipeableFor orientation: SwipeActionsOrientation) {
+//        guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: self) else { return }
+//
+//        // Remove highlight and deselect any selected cells
+//        super.isHighlighted = false
+//        isPreviouslySelected = isSelected
+//        collectionView.deselectItem(at: indexPath, animated: false)
+//
+//        delegate?.collectionView(collectionView, willBeginEditingItemAt: indexPath, for: orientation)
+//    }
+//
+//    func swipeController(_ controller: SwipeController, didEndEditingSwipeableFor orientation: SwipeActionsOrientation) {
+//        guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: self), let actionsView = self.actionsView else { return }
+//
+//        resetSelectedState()
+//
+//        delegate?.collectionView(collectionView, didEndEditingItemAt: indexPath, for: actionsView.orientation)
+//    }
+//
+//    func swipeController(_ controller: SwipeController, didDeleteSwipeableAt indexPath: IndexPath) {
+//        collectionView?.deleteItems(at: [indexPath])
+//    }
+//}
 

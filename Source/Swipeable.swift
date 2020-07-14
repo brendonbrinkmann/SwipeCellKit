@@ -23,7 +23,7 @@ protocol Swipeable {
     var panGestureRecognizer: UIGestureRecognizer { get }
 }
 
-extension SwipeTableViewCell: Swipeable {}
+//extension SwipeTableViewCell: Swipeable {}
 extension SwipeCollectionViewCell: Swipeable {}
 
 enum SwipeState: Int {

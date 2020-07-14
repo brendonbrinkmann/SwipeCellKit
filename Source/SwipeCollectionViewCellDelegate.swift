@@ -12,9 +12,9 @@ import UIKit
  */
 public protocol SwipeCollectionViewCellDelegate: class {
     
-    func didToggleSubscription(channelCell: ChannelListCollectionViewCell, turnedTo onState: Bool)
-    
-    func didTapChannel(channelCell: ChannelListCollectionViewCell)
+//    func didToggleSubscription(channelCell: ChannelListCollectionViewCell, turnedTo onState: Bool)
+//    
+//    func didTapChannel(channelCell: ChannelListCollectionViewCell)
     /**
      Asks the delegate for the actions to display in response to a swipe in the specified item.
      
