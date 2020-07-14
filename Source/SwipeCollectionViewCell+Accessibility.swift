@@ -38,31 +38,31 @@ extension SwipeCollectionViewCell {
 
 extension SwipeCollectionViewCell {
     /// :nodoc:
-    open override var accessibilityCustomActions: [UIAccessibilityCustomAction]? {
-        get {
-            guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: self) else {
-                return super.accessibilityCustomActions
-            }
-            
-            let leftActions = delegate?.collectionView(collectionView, editActionsForItemAt: indexPath, for: .left) ?? []
-            let rightActions = delegate?.collectionView(collectionView, editActionsForItemAt: indexPath, for: .right) ?? []
-            
-            let actions = [rightActions.first, leftActions.first].compactMap({ $0 }) + rightActions.dropFirst() + leftActions.dropFirst()
-            
-            if actions.count > 0 {
-                return actions.compactMap({ SwipeAccessibilityCustomAction(action: $0,
-                                                                    indexPath: indexPath,
-                                                                    target: self,
-                                                                    selector: #selector(performAccessibilityCustomAction(accessibilityCustomAction:))) })
-            } else {
-                return super.accessibilityCustomActions
-            }
-        }
-        
-        set {
-            super.accessibilityCustomActions = newValue
-        }
-    }
+//    open override var accessibilityCustomActions: [UIAccessibilityCustomAction]? {
+//        get {
+//            guard let collectionView = collectionView, let indexPath = collectionView.indexPath(for: self) else {
+//                return super.accessibilityCustomActions
+//            }
+//            
+//            let leftActions = delegate?.collectionView(collectionView, editActionsForItemAt: indexPath, for: .left) ?? []
+//            let rightActions = delegate?.collectionView(collectionView, editActionsForItemAt: indexPath, for: .right) ?? []
+//            
+//            let actions = [rightActions.first, leftActions.first].compactMap({ $0 }) + rightActions.dropFirst() + leftActions.dropFirst()
+//            
+//            if actions.count > 0 {
+//                return actions.compactMap({ SwipeAccessibilityCustomAction(action: $0,
+//                                                                    indexPath: indexPath,
+//                                                                    target: self,
+//                                                                    selector: #selector(performAccessibilityCustomAction(accessibilityCustomAction:))) })
+//            } else {
+//                return super.accessibilityCustomActions
+//            }
+//        }
+//        
+//        set {
+//            super.accessibilityCustomActions = newValue
+//        }
+//    }
     
     @objc func performAccessibilityCustomAction(accessibilityCustomAction: SwipeAccessibilityCustomAction) -> Bool {
         guard let collectionView = collectionView else { return false }
